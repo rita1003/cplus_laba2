@@ -1,10 +1,10 @@
 #include <iostream>
-#include <fstream> // для чтения из файла
+#include <fstream> // РґР»СЏ С‡С‚РµРЅРёСЏ РёР· С„Р°Р№Р»Р°
 #include <string>
 #include <vector>
-#include <algorithm> // для сортировки вектора
-#include <stdlib.h> // нужен для вызова функций rand(), srand()
-#include <time.h> // нужен для вызова функции time()
+#include <algorithm> // РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РІРµРєС‚РѕСЂР°
+#include <stdlib.h> // РЅСѓР¶РµРЅ РґР»СЏ РІС‹Р·РѕРІР° С„СѓРЅРєС†РёР№ rand(), srand()
+#include <time.h> // РЅСѓР¶РµРЅ РґР»СЏ РІС‹Р·РѕРІР° С„СѓРЅРєС†РёРё time()
 
 using namespace std;
 
@@ -22,9 +22,9 @@ void range_based_for_loop(vector <int>& vec_marks, vector <string>& vec_names);
 //void with_index_range(vector <int>& vec_marks, vector <string>& vec_names);
 
 
-//функция для подсчета количества строк в текстовом файле
-//понадобится нам в дальнейшем для создания динамического массива, который будет
-//состоять из имён  
+//С„СѓРЅРєС†РёСЏ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СЂРѕРє РІ С‚РµРєСЃС‚РѕРІРѕРј С„Р°Р№Р»Рµ
+//РїРѕРЅР°РґРѕР±РёС‚СЃСЏ РЅР°Рј РІ РґР°Р»СЊРЅРµР№С€РµРј РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ РјР°СЃСЃРёРІР°, РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚
+//СЃРѕСЃС‚РѕСЏС‚СЊ РёР· РёРјС‘РЅ  
 
 
 int size_of_text_file(ifstream& base) {
@@ -38,7 +38,7 @@ int size_of_text_file(ifstream& base) {
         i++;
     }
 
-    base.clear(); //возвращаемся в начало файла
+    base.clear(); //РІРѕР·РІСЂР°С‰Р°РµРјСЃСЏ РІ РЅР°С‡Р°Р»Рѕ С„Р°Р№Р»Р°
     base.seekg(0);
 
     delete str;
@@ -47,20 +47,20 @@ int size_of_text_file(ifstream& base) {
 
 }
 
-//создание динамического массива строк (будут записаны имена из текстового файла)
+//СЃРѕР·РґР°РЅРёРµ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ РјР°СЃСЃРёРІР° СЃС‚СЂРѕРє (Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ РёРјРµРЅР° РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°)
 
 string* array_names(ifstream& base, int n) {
 
-    // Объявление переменной для хранения строки
+    // РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ СЃС‚СЂРѕРєРё
     string line;
 
-    // Объявление массива строк
+    // РћР±СЉСЏРІР»РµРЅРёРµ РјР°СЃСЃРёРІР° СЃС‚СЂРѕРє
     string* lines = new string[n];
 
-    // Счетчик строк
+    // РЎС‡РµС‚С‡РёРє СЃС‚СЂРѕРє
     int count = 0;
 
-    // Чтение строк из файла и сохранение их в массив
+    // Р§С‚РµРЅРёРµ СЃС‚СЂРѕРє РёР· С„Р°Р№Р»Р° Рё СЃРѕС…СЂР°РЅРµРЅРёРµ РёС… РІ РјР°СЃСЃРёРІ
     while (getline(base, line, '\n')) {
         lines[count] = line;
         count++;
@@ -70,23 +70,23 @@ string* array_names(ifstream& base, int n) {
 
 }
 
-//функция для рандомного значения
+//С„СѓРЅРєС†РёСЏ РґР»СЏ СЂР°РЅРґРѕРјРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 
 int GetRandomNumber(int min, int max)
 {
     return min + rand() % (max - min);
 }
 
-//функции, реализующие выбранный пользователем вариант инициализации
+//С„СѓРЅРєС†РёРё, СЂРµР°Р»РёР·СѓСЋС‰РёРµ РІС‹Р±СЂР°РЅРЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј РІР°СЂРёР°РЅС‚ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
 
-void var1(int size_of_vect, string* arr, int n) { //демонстрационный анализ на дефолтных входных значениях
+void var1(int size_of_vect, string* arr, int n) { //РґРµРјРѕРЅСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ Р°РЅР°Р»РёР· РЅР° РґРµС„РѕР»С‚РЅС‹С… РІС…РѕРґРЅС‹С… Р·РЅР°С‡РµРЅРёСЏС…
 
     vector <int> marks(size_of_vect);
     vector <string> names(size_of_vect);
 
-    srand(time(0)); // Установить генератор случайных чисел
+    srand(time(0)); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РіРµРЅРµСЂР°С‚РѕСЂ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
 
-    for (int i = 0; i < size_of_vect; i++) { //заполнение векторов
+    for (int i = 0; i < size_of_vect; i++) { //Р·Р°РїРѕР»РЅРµРЅРёРµ РІРµРєС‚РѕСЂРѕРІ
         marks[i] = GetRandomNumber(0, 100);
         names[i] = arr[GetRandomNumber(0, n)];
     }
@@ -100,12 +100,12 @@ void var1(int size_of_vect, string* arr, int n) { //демонстрационный анализ на д
 
 }
 
-void var2(int size_of_vect, string* arr, int n) { //анализ на случайных входных значениях
+void var2(int size_of_vect, string* arr, int n) { //Р°РЅР°Р»РёР· РЅР° СЃР»СѓС‡Р°Р№РЅС‹С… РІС…РѕРґРЅС‹С… Р·РЅР°С‡РµРЅРёСЏС…
 
     vector <int> marks(size_of_vect);
     vector <string> names(size_of_vect);
 
-    for (int i = 0; i < size_of_vect; i++) { //заполнение векторов
+    for (int i = 0; i < size_of_vect; i++) { //Р·Р°РїРѕР»РЅРµРЅРёРµ РІРµРєС‚РѕСЂРѕРІ
         marks[i] = GetRandomNumber(0, 100);
         names[i] = arr[GetRandomNumber(0, n)];
     }
@@ -119,7 +119,7 @@ void var2(int size_of_vect, string* arr, int n) { //анализ на случайных входных 
 
 }
 
-void var3(int size_of_vect) { //анализ на входных значениях от самого пользователя
+void var3(int size_of_vect) { //Р°РЅР°Р»РёР· РЅР° РІС…РѕРґРЅС‹С… Р·РЅР°С‡РµРЅРёСЏС… РѕС‚ СЃР°РјРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
     vector <int> marks(size_of_vect);
     vector <string> names(size_of_vect);
@@ -147,9 +147,9 @@ void var3(int size_of_vect) { //анализ на входных значениях от самого пользовате
     mode(marks, names);
 }
 
-//функции подсчета
+//С„СѓРЅРєС†РёРё РїРѕРґСЃС‡РµС‚Р°
 
-void mean(vector <int>& vec_marks) { //функция для подсчета среднего значения
+void mean(vector <int>& vec_marks) { //С„СѓРЅРєС†РёСЏ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° СЃСЂРµРґРЅРµРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 
     int sum = 0;
 
@@ -160,7 +160,7 @@ void mean(vector <int>& vec_marks) { //функция для подсчета среднего значения
     cout << '\n' << "The mean is " << sum / size(vec_marks) << endl;
 }
 
-void median(vector <int>& vec_marks) { //функция для подсчета медианы
+void median(vector <int>& vec_marks) { //С„СѓРЅРєС†РёСЏ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РјРµРґРёР°РЅС‹
 
     size_t size = vec_marks.size();
     sort(vec_marks.begin(), vec_marks.end());
@@ -171,13 +171,13 @@ void median(vector <int>& vec_marks) { //функция для подсчета медианы
 
 }
 
-void mode(vector <int>& vec_marks, vector <string>& vec_names) { //функция для подсчета моды
+void mode(vector <int>& vec_marks, vector <string>& vec_names) { //С„СѓРЅРєС†РёСЏ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° РјРѕРґС‹
 
     size_t size = vec_marks.size();
 
     int MAX = 0;
 
-    int arr[100] = { 0 }; //т.к. оценки от 0 до 100, создадим массив, создадим массив размером 100, заполненный нулями
+    int arr[100] = { 0 }; //С‚.Рє. РѕС†РµРЅРєРё РѕС‚ 0 РґРѕ 100, СЃРѕР·РґР°РґРёРј РјР°СЃСЃРёРІ, СЃРѕР·РґР°РґРёРј РјР°СЃСЃРёРІ СЂР°Р·РјРµСЂРѕРј 100, Р·Р°РїРѕР»РЅРµРЅРЅС‹Р№ РЅСѓР»СЏРјРё
 
     for (int i = 0; i < size; i++) {
         arr[vec_marks[i] - 1] += 1;
@@ -208,9 +208,9 @@ void mode(vector <int>& vec_marks, vector <string>& vec_names) { //функция для п
 
 }
 
-//функции вывода
+//С„СѓРЅРєС†РёРё РІС‹РІРѕРґР°
 
-void range_based_for_loop(vector <int>& vec_marks, vector <string>& vec_names) { //вывод с помощью цикла range-based for-loop
+void range_based_for_loop(vector <int>& vec_marks, vector <string>& vec_names) { //РІС‹РІРѕРґ СЃ РїРѕРјРѕС‰СЊСЋ С†РёРєР»Р° range-based for-loop
 
     cout << '\n' << "The table for vector of names: " << endl;
 
@@ -227,26 +227,26 @@ void range_based_for_loop(vector <int>& vec_marks, vector <string>& vec_names) {
 
 
 /*
-void with_iterator(vector <int>& vec_marks, vector <string>& vec_names) { //вывод с помощью итератора
+void with_iterator(vector <int>& vec_marks, vector <string>& vec_names) { //РІС‹РІРѕРґ СЃ РїРѕРјРѕС‰СЊСЋ РёС‚РµСЂР°С‚РѕСЂР°
 
-    auto iter_for_marks{ vec_marks.begin() };  // получаем итератор
+    auto iter_for_marks{ vec_marks.begin() };  // РїРѕР»СѓС‡Р°РµРј РёС‚РµСЂР°С‚РѕСЂ
 
     cout << '\n' << "The table for vector of marks: " << endl;
 
-    while (iter_for_marks != vec_marks.end())    // пока не дойдем до конца
+    while (iter_for_marks != vec_marks.end())    // РїРѕРєР° РЅРµ РґРѕР№РґРµРј РґРѕ РєРѕРЅС†Р°
     {
-        cout << *iter_for_marks << endl;// получаем элементы через итератор
-        ++iter_for_marks;             // перемещаемся вперед на один элемент
+        cout << *iter_for_marks << endl;// РїРѕР»СѓС‡Р°РµРј СЌР»РµРјРµРЅС‚С‹ С‡РµСЂРµР· РёС‚РµСЂР°С‚РѕСЂ
+        ++iter_for_marks;             // РїРµСЂРµРјРµС‰Р°РµРјСЃСЏ РІРїРµСЂРµРґ РЅР° РѕРґРёРЅ СЌР»РµРјРµРЅС‚
     }
 
     auto iter_for_names{ vec_names.begin() };
 
     cout << '\n' << "The table for vector of names: " << endl;
 
-    while (iter_for_names != vec_names.end())    // пока не дойдем до конца
+    while (iter_for_names != vec_names.end())    // РїРѕРєР° РЅРµ РґРѕР№РґРµРј РґРѕ РєРѕРЅС†Р°
     {
-        cout << *iter_for_names << endl;// получаем элементы через итератор
-        ++iter_for_names;             // перемещаемся вперед на один элемент
+        cout << *iter_for_names << endl;// РїРѕР»СѓС‡Р°РµРј СЌР»РµРјРµРЅС‚С‹ С‡РµСЂРµР· РёС‚РµСЂР°С‚РѕСЂ
+        ++iter_for_names;             // РїРµСЂРµРјРµС‰Р°РµРјСЃСЏ РІРїРµСЂРµРґ РЅР° РѕРґРёРЅ СЌР»РµРјРµРЅС‚
     }
 
 }
@@ -254,7 +254,7 @@ void with_iterator(vector <int>& vec_marks, vector <string>& vec_names) { //выво
 
 
 /*
-void with_index_range(vector <int>& vec_marks, vector <string>& vec_names) { //вывод с помощью индексового цикла
+void with_index_range(vector <int>& vec_marks, vector <string>& vec_names) { //РІС‹РІРѕРґ СЃ РїРѕРјРѕС‰СЊСЋ РёРЅРґРµРєСЃРѕРІРѕРіРѕ С†РёРєР»Р°
 
     cout << '\n' << "The table for vector of marks: " << endl;
 
@@ -271,16 +271,16 @@ void with_index_range(vector <int>& vec_marks, vector <string>& vec_names) { //в
 }
 */
 
-// основная функция
+// РѕСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ
 
 int main() {
 
     int user_search;
 
-    ifstream base("names.txt"); //для чтения файла с именами
-    if (!base) return 1; //Если ошибка открытия файла, то завершаем программу
+    ifstream base("names.txt"); //РґР»СЏ С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° СЃ РёРјРµРЅР°РјРё
+    if (!base) return 1; //Р•СЃР»Рё РѕС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°, С‚Рѕ Р·Р°РІРµСЂС€Р°РµРј РїСЂРѕРіСЂР°РјРјСѓ
 
-    int size_arr = size_of_text_file(base); //количество строк в файле
+    int size_arr = size_of_text_file(base); //РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ С„Р°Р№Р»Рµ
 
     string* array_of_names;
 
